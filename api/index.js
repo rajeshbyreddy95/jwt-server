@@ -9,3 +9,6 @@ app.get('/',(req,res)=>{
     res.json({"message":"server running"})
 })
 
+app.listen(port, ()=> console.log('server running under port ', port))
+
+module.exports = app
