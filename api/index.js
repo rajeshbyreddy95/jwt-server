@@ -1,22 +1,30 @@
-const express = require('express')
-const app = express()
-const port = 6060
-const cors = require('cors')
-const connectDB = require('../mongodb/db')
-const authRoutes = require('../mongodb/routes/authRoutes')
+const express = require('express');
+const cors = require('cors');
+const connectDB = require('../mongodb/db');
+const authRoutes = require('../mongodb/routes/authRoutes');
 
+const app = express();
+const port = 6060;
 
-app.use(express())
-app.use(cors())
+// ✅ Middleware
+app.use(cors());
+app.use(express.json()); // 🔧 Fix: use express.json() to parse JSON bodies
 
-connectDB()
+// ✅ Connect to MongoDB
+connectDB();
 
-app.get('/',(req,res)=>{
-    res.json({"message":"server running"})
-})
+// ✅ Base route
+app.get('/', (req, res) => {
+  res.json({ message: 'server running' });
+});
 
-app.use('/api', authRoutes)
+// ✅ Auth routes
+app.use('/api', authRoutes);
 
-app.listen(port, ()=> console.log('server running under port ', port))
+// ✅ Local dev server (ignored by Vercel but useful locally)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => console.log('Server running on port', port));
+}
 
-module.exports = app
+// ✅ Export app for Vercel
+module.exports = app;
