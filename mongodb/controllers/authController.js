@@ -12,7 +12,6 @@ exports.initial = (req, res)=>{
 exports.signup= async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    console.log(username, email, password);
     
     // Validate input
     if (!username || !email || !password) {
