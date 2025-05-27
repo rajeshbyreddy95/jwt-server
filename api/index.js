@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./mongodb/db');
-const authRoutes = require('./mongodb/routes/authRoutes');
+const connectDB = require('../mongodb/db');
+const authRoutes = require('../mongodb/routes/authRoutes');
 
 const app = express();
 const port = 6060;
