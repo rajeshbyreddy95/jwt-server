@@ -4,8 +4,12 @@ const User = require('./models/user');
 
 const router = express.Router();
 
+exports.initial = (req, res)=>{
+  res.json({"message ":"server running successfully "})
+}
+
 // Signup route
-router.post('/signup', async (req, res) => {
+exports.signup= async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -38,6 +42,4 @@ router.post('/signup', async (req, res) => {
     console.error('Signup error:', err);
     res.status(500).json({ error: 'Server error' });
   }
-});
-
-module.exports = router;
+};
